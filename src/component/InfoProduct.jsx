@@ -7,7 +7,6 @@ function InfoProduct() {
     const dispatch = useDispatch();
     // Using your existing selector
     const selector = useSelector(state => state.info.selectedItem);
-
     // States for local interaction
     const [quantity, setQuantity] = useState(1);
     const [mainImage, setMainImage] = useState("");
@@ -28,6 +27,7 @@ function InfoProduct() {
     const handdetails = () => {
         // Keeping your logic: adding to cart with the selected quantity
         dispatch(addTocart({ ...selector, quantity }));
+        console.log(selector);
     };
 
     return (

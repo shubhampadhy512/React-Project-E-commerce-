@@ -2,6 +2,7 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
     cartitem: [],
+    quantity:1
 }
 export const cartItem = createSlice({
     name: "cartitem",
@@ -12,6 +13,7 @@ export const cartItem = createSlice({
                 id: nanoid(),
                 ...action.payload
             });
+            state.quantity=action.payload.quantity;
         },
         removeCart: (state, action) => {
             state.cartitem = state.cartitem.filter(item=>item.id!==action.payload);
