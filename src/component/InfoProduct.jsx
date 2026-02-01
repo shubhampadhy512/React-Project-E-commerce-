@@ -26,7 +26,7 @@ function InfoProduct() {
 
     const handdetails = () => {
         // Keeping your logic: adding to cart with the selected quantity
-        dispatch(addTocart({ ...selector, quantity }));
+        dispatch(addTocart({ ...selector, quantity,totalPrice},quantity,totalPrice));
         console.log(selector);
     };
 

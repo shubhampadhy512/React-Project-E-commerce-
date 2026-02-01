@@ -5,12 +5,11 @@ function Addcart() {
     const dispatch=useDispatch();
     const selector = useSelector(state => state.cart.cartitem);
     // console.log(selector.quantity);
-
-    console.log(selector);
+const totalPrice = useSelector(state => state.cart.totalprice);
     return (
         <div>
             {selector.map(selector => (
-                <div key={selector.id}>
+                <div key={selector.newid}>
                     <h1>{selector.title}</h1>
                     {
                         selector.images.map(image => (
@@ -23,6 +22,7 @@ function Addcart() {
                 </div>
             ))
             }
+            <h1>{totalPrice}</h1>
         </div>
     )
 }
