@@ -22,11 +22,11 @@ function InfoProduct() {
     if (!selector) return <div className="loader">No product selected.</div>;
 
     // Logic: Calculate total price based on quantity
-    const totalPrice = (selector.price * quantity).toFixed(2);
+    const itemPrice = (selector.price * quantity).toFixed(2);
 
     const handdetails = () => {
         // Keeping your logic: adding to cart with the selected quantity
-        dispatch(addTocart({ ...selector, quantity,totalPrice},quantity,totalPrice));
+        dispatch(addTocart({ ...selector, quantity,itemPrice},itemPrice));
         console.log(selector);
     };
 
@@ -87,7 +87,7 @@ function InfoProduct() {
                 <div className='buy-box'>
                     <div className="total-price-display">
                         <span className="currency-small">$</span>
-                        <span className="total-amount">{totalPrice}</span>
+                        <span className="total-amount">{itemPrice}</span>
                     </div>
 
                     <p className="delivery-text">FREE delivery <b>Monday, Jan 20</b>. Order within 5 hrs.</p>

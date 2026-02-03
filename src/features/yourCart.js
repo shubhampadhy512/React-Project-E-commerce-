@@ -2,7 +2,7 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
     cartitem: [],
-    totalprice:0
+    totalprice: 0
 }
 export const cartItem = createSlice({
     name: "cartitem",
@@ -13,13 +13,16 @@ export const cartItem = createSlice({
                 newid: nanoid(),
                 ...action.payload,
             });
-            state.totalprice+=Math.round(Number(action.payload.totalPrice));
+            state.totalprice += Math.round(Number(action.payload.itemPrice));
         },
         removeCart: (state, action) => {
-            state.cartitem = state.cartitem.filter(item=>item.id!==action.payload);
+            state.cartitem = state.cartitem.filter(item => (
+                item.newid !== action.payload.id
+            ));
+            state.totalprice-= Math.round(Number(action.payload.itemPrice));
         }
     }
 })
 
-export const {addTocart,removeCart}= cartItem.actions;
+export const { addTocart, removeCart } = cartItem.actions;
 export default cartItem.reducer;
