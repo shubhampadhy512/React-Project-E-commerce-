@@ -1,20 +1,24 @@
-import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeCart } from '../features/yourCart';
+import { useNavigate } from 'react-router-dom';
 import './Addcart.css';
 
 function Addcart() {
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cart.cartitem);
-
+    const navigate = useNavigate();
     const subtotal = useSelector(state => state.cart.totalprice);
-    console.log(subtotal);
+    console.log(cartItems);
     const shipping = subtotal > 0 ? 10.00 : 0;
     const total = subtotal + shipping;
 
     const handlecart = (id, itemPrice) => {
-        console.log(itemPrice);
-        dispatch(removeCart({id, itemPrice}));
+        dispatch(removeCart({ id, itemPrice }));
+    }
+
+    const editcart = (id, itemPrice) => {
+        dispatch(removeCart({ id, itemPrice }));
+        navigate("/infoproduct");
     }
 
     return (
@@ -28,7 +32,7 @@ function Addcart() {
                         <div className="empty-cart">Your cart is currently empty.</div>
                     ) : (
                         cartItems.map((item) => (
-                            <div key={item.newid || item.id} className="cart-card">
+                            <div key={item.newid} className="cart-card">
                                 <div className="card-image-wrapper">
                                     <img src={item.images[0]} alt={item.title} className="card-img" />
                                 </div>
@@ -39,7 +43,7 @@ function Addcart() {
                                             <h3 className="card-title">{item.title}</h3>
                                             <p className="card-brand">Premium Collection</p>
                                         </div>
-                                        <p className="card-price">${item.price}</p>
+                                        <p className="card-price">${item.itemPrice}</p>
                                     </div>
 
                                     <div className="card-details">
@@ -49,7 +53,9 @@ function Addcart() {
                                     </div>
 
                                     <div className="card-actions">
-                                        <button className="btn-edit">
+                                        <button className="btn-edit"
+                                            onClick={() => editcart(item.newid, item.itemPrice)}
+                                        >
                                             Edit
                                         </button>
                                         <button
