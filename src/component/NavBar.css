@@ -1,0 +1,118 @@
+.body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #0F172A;
+    color: #F8FAFC;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(1px);
+    z-index: 5;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.content.blurred {
+    filter: blur(2px);
+    pointer-events: none;
+    transition: filter 0.3s ease;
+}
+
+.navbar {
+    background-color: #16213E;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    height: 4rem;
+
+    /* Sticky Logic */
+    position: sticky;
+    /* Makes it stick to the top */
+    top: 0;
+    /* Position it at the very top */
+    z-index: 1000;
+    /* Ensures it stays above images and text */
+
+    /* Glassmorphism Optional - adds a slight blur to what's behind it */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Logo */
+.logo {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Menu */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin-right: 4rem;
+    gap: 5rem;
+    padding: 0;
+}
+
+.nav-links li a {
+    /* Soft white for inactive links */
+    color: #94A3B8;
+    text-decoration: none;
+    font-size: 22px;
+    position: relative;
+    padding-bottom: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Hover underline animation */
+.nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #00E5FF;
+    box-shadow: 0 0 8px #00E5FF;
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+    width: 100%;
+}
+
+.nav-links li a:hover {
+    color: #00E5FF;
+}
+
+.nav-links li a.active {
+    color: #00E5FF;
+}
+
+.nav-links li a.active::after {
+    width: 100%;
+}
+
+.btn {
+    background: linear-gradient(135deg, #00E5FF 0%, #7209B7 100%);
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    display: inline-block;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    /* Cyan glow on hover */
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.6);
+}
